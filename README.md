@@ -180,7 +180,7 @@ TELEGRAM_BOT_TOKEN = "your_telegram_bot_token_here"
        http://localhost:8501
 
   
-## 💻 Usaage
+## 💻 Usage
 
 ### Quick Start Guide
 1. **Sign Up/Login** - Create account or use existing credentials
@@ -197,6 +197,5 @@ TELEGRAM_BOT_TOKEN = "your_telegram_bot_token_here"
 - Use **Telegram bot** for quick interactions
 
 ## 👤 Author
-
-- Priyanka Rath  
-  GitHub: [@your-github](https://github.com/your-github)
+- **Priyanka Rath**  
+  GitHub: [@Priyanka-2004-Rath](https://github.com/Priyanka-2004-Rath)
