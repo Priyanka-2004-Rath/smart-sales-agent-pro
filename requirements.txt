@@ -7,7 +7,7 @@ numpy
 plotly
 gtts
 bcrypt
-requests
+python-telegram-bot==20.7
 beautifulsoup4
-python-telegram-bot==20.3
+requests
 python-dotenv
