@@ -1,12 +1,11 @@
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 import asyncio
+import streamlit as st
+BOT_TOKEN = st.secrets["TELEGRAM_BOT_TOKEN"]
 
-# ✅ Load .env variables
-load_dotenv()
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 # Import mood detection and reply generation
 from enhanced_mood_detector import MoodDetector, ReplyGenerator
