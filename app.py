@@ -550,7 +550,26 @@ st.sidebar.markdown("### 💬 Telegram Integration")
 telegram_bot_link = "https://t.me/smartsales_pro_bot"
 
 if st.sidebar.button("📲 Launch Telegram Bot", use_container_width=True):
-    webbrowser.open_new_tab(telegram_bot_link)
+    # Method 1: JavaScript redirect (more reliable in web environment)
+    st.sidebar.markdown(f"""
+    <script>
+    window.open('{telegram_bot_link}', '_blank');
+    </script>
+    """, unsafe_allow_html=True)
+    
+    # Method 2: Clickable link as backup
+    st.sidebar.markdown(f"""
+    <a href="{telegram_bot_link}" target="_blank" style="
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0088cc;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 10px;
+    ">🚀 Click here if bot didn't open automatically</a>
+    """, unsafe_allow_html=True)
+    
     st.sidebar.success("🚀 Telegram bot launched!")
 
 # Main Content Area
