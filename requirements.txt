@@ -8,6 +8,6 @@ plotly
 gtts
 bcrypt
 python-dotenv
-beautifulsoup4
 requests
-python-telegram-bot==20.7
+beautifulsoup4
+python-telegram-bot==20.0
