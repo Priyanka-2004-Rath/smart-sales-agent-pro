@@ -8,7 +8,7 @@ transformers
 torch
 scikit-learn
 nltk
-python-telegram-bot==20.3
+python-telegram-bot==20.8
 beautifulsoup4
 requests
 python-dotenv
