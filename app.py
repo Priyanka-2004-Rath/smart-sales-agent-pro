@@ -28,18 +28,7 @@ def launch_telegram_bot():
     bot_thread.start()
     return "Bot running"
 
-# 🔗 Add a button to open the Telegram bot
-st.markdown(
-    """
-    <a href="https://t.me/SmartSalesAgentBot" target="_blank">
-        <button style="background-color:#2ca5e0;color:white;padding:10px 16px;border:none;border-radius:5px;font-size:16px;">
-            🚀 Launch Telegram Bot
-        </button>
-    </a>
-    """,
-    unsafe_allow_html=True
-)
-
+launch_telegram_bot()  # Run the bot when Streamlit starts
 
 
 
