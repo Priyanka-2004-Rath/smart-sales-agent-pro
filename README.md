@@ -150,5 +150,53 @@ AI-powered sales automation platform that streamlines lead handling and CRM thro
 
 ### Local Setup
 
-- **Clone the repository** 
+- **Clone the repository**
+  ```bash
+        https://github.com/Priyanka-2004-Rath/smart-sales-agent-pro.git
+        cd smart-sales-agent-pro
+  
+- **Create virtual environment**
+  ```bash
+      python -m venv venv
+      source venv/bin/activate
+  
+- **Install dependencies**
+  ```bash
+       pip install -r requirements.txt
 
+- **Configure Streamlit secrets**
+  ```bash
+       mkdir .streamlit
+
+Add to .streamlit/secrets.toml:
+
+TELEGRAM_BOT_TOKEN = "your_telegram_bot_token_here"
+
+- **Run the application**
+  ```bash
+      streamlit run app.py
+- **Open in browser**
+  ```bash
+       http://localhost:8501
+
+  
+## 💻 Usaage
+
+### Quick Start Guide
+1. **Sign Up/Login** - Create account or use existing credentials
+2. **Dashboard Overview** - Explore the main analytics dashboard
+3. **Add Leads** - Import or manually add customer information/message
+4. **AI Analysis** - Experience mood detection in action
+5. **Telegram Bot** - Try the automated sales assistant
+6. **View Analytics** - Check real-time sales insights
+
+### Key Features to Try
+- Test the **mood detection** with different customer messages
+- Explore **lead scoring** functionality
+- Check **daily trending sales** analytics
+- Use **Telegram bot** for quick interactions
+
+## 👤 Author
+
+- Priyanka Rath  
+  GitHub: [@your-github](https://github.com/your-github)
