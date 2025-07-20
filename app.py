@@ -152,7 +152,37 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+
+st.markdown("""
+<style>
+/* Quick fix - force dark text in light mode */
+@media (prefers-color-scheme: light) {
+    .main .block-container,
+    .glass-card,
+    .user-info,
+    .stats-box,
+    .chat-item,
+    .metric-card {
+        color: #1f1f1f !important;
+    }
+    
+    /* Light mode background */
+    .main .block-container {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    }
+    
+    /* Glass cards in light mode */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.8) !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
+
 # Advanced Custom CSS with animations and modern design
+# Replace your CSS section with this theme-aware version:
+
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -160,6 +190,43 @@ st.markdown("""
     /* Global Styles */
     * {
         font-family: 'Inter', sans-serif;
+    }
+    
+    /* Theme-aware colors using CSS variables */
+    :root {
+        --text-color: #1f1f1f;
+        --bg-color: #ffffff;
+        --accent-color: #667eea;
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Dark mode detection */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --text-color: #ffffff;
+            --bg-color: #0e1117;
+            --accent-color: #8ab4f8;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+    }
+    
+    /* Streamlit specific theme detection */
+    [data-theme="dark"] {
+        --text-color: #ffffff;
+        --bg-color: #0e1117;
+        --accent-color: #8ab4f8;
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+    }
+    
+    [data-theme="light"] {
+        --text-color: #1f1f1f;
+        --bg-color: #ffffff;
+        --accent-color: #667eea;
+        --glass-bg: rgba(0, 0, 0, 0.05);
+        --glass-border: rgba(0, 0, 0, 0.1);
     }
     
     /* Animations */
@@ -173,24 +240,15 @@ st.markdown("""
         to { opacity: 1; transform: translateY(0); }
     }
     
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-    
-    @keyframes slideIn {
-        from { transform: translateX(-100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    
-    /* Main Container */
+    /* Main Container - Adaptive background */
     .main .block-container {
         padding-top: 2rem;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: var(--bg-color);
         min-height: 100vh;
+        color: var(--text-color);
     }
     
-    /* Header Styling */
+    /* Header Styling - Theme aware */
     .main-header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         -webkit-background-clip: text;
@@ -202,33 +260,34 @@ st.markdown("""
         animation: glow 3s ease-in-out infinite alternate;
     }
     
-    /* Glass Card Effect */
+    /* Glass Card Effect - Theme adaptive */
     .glass-card {
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--glass-bg);
         backdrop-filter: blur(15px);
         border-radius: 20px;
         padding: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid var(--glass-border);
         box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
         animation: fadeInUp 0.6s ease-out;
         margin-bottom: 2rem;
+        color: var(--text-color);
     }
     
-    /* User Info Card */
+    /* User Info Card - Adaptive */
     .user-info {
-        background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+        background: var(--glass-bg);
         backdrop-filter: blur(10px);
         padding: 1rem 1.5rem;
         border-radius: 15px;
-        border: 1px solid rgba(255,255,255,0.2);
-        color: white;
+        border: 1px solid var(--glass-border);
+        color: var(--text-color);
         animation: slideIn 0.8s ease-out;
     }
     
-    /* Mood Display */
+    /* Mood Display - Better contrast */
     .mood-display {
         background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-        color: white;
+        color: white;  /* Keep white for contrast on colored background */
         font-size: 1.3rem;
         font-weight: 600;
         padding: 2rem;
@@ -236,47 +295,38 @@ st.markdown("""
         margin: 1rem 0;
         text-align: center;
         box-shadow: 0 15px 30px rgba(255, 107, 107, 0.3);
-        animation: pulse 2s infinite;
-    }
+        }
     
-    /* Reply Box */
+    /* Reply Box - Better contrast */
     .reply-box {
         background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-        color: white;
+        color: white;  /* Keep white for contrast on colored background */
         padding: 2rem;
         border-radius: 20px;
         margin: 1rem 0;
         box-shadow: 0 15px 30px rgba(116, 185, 255, 0.3);
-        animation: fadeInUp 0.8s ease-out;
-    }
+        }
     
-    /* Stats Boxes */
+    /* Stats Boxes - Theme adaptive */
     .stats-box {
-        background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+        background: var(--glass-bg);
         backdrop-filter: blur(10px);
         padding: 1.5rem;
         border-radius: 15px;
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid var(--glass-border);
         margin: 1rem 0;
         transition: all 0.3s ease;
-        color: white;
+        color: var(--text-color);
     }
     
-    .stats-box:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    }
-    
-    /* Alert Styles */
+    /* Alert Styles - Keep contrasting colors */
     .alert-danger {
         background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
         color: white;
         padding: 1rem 2rem;
-        border-radius: 15px;
-        border: none;
-        animation: pulse 1s infinite;
+        border-radius: 15px; border: none;
         font-weight: 600;
-    }
+        }
     
     .alert-success {
         background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
@@ -287,153 +337,92 @@ st.markdown("""
         font-weight: 600;
     }
     
-    /* Button Styles */
+    /* Button Styles - Theme aware */
     .stButton > button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--accent-color) 0%, #764ba2 100%);
         color: white;
         border: none;
         border-radius: 25px;
         padding: 0.7rem 2rem;
         font-weight: 600;
         transition: all 0.3s ease;
-        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
     }
     
-    .stButton > button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+    /* Text Area Styling - Theme adaptive */
+    .stTextArea textarea {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 15px;
+        color: var(--text-color);
+        backdrop-filter: blur(10px);
     }
     
-    /* Sidebar Styling */
-    .css-1d391kg {
-        background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    /* Progress Bar */
-    .stProgress .st-bo {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 10px;
-    }
-    
-    /* Chat History */
+    /* Chat History - Theme adaptive */
     .chat-item {
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--glass-bg);
         backdrop-filter: blur(10px);
         border-radius: 15px;
         padding: 1rem;
         margin: 0.5rem 0;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--glass-border);
         transition: all 0.3s ease;
+        color: var(--text-color);
     }
     
-    .chat-item:hover {
-        transform: translateX(10px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-    
-    /* Floating Action Button */
-    .floating-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        z-index: 1000;
-    }
-    
-    .floating-btn:hover {
-        transform: scale(1.1);
-        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
-    }
-    
-    /* Text Area Styling */
-    .stTextArea textarea {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 15px;
-        color: white;
-        backdrop-filter: blur(10px);
-    }
-    
-    .stTextArea textarea:focus {
-        border-color: #667eea;
-        box-shadow: 0 0 25px rgba(102, 126, 234, 0.3);
-    }
-    
-    /* Tabs */
-    .stTabs [data-baseweb="tab-list"] {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        padding: 0.5rem;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        background: transparent;
-        border-radius: 10px;
-        color: white;
-        font-weight: 600;
-    }
-    
-    .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    /* Expander */
-    .streamlit-expanderHeader {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: white;
-        font-weight: 600;
-    }
-    
-    /* Metrics */
+    /* Metric cards - Theme adaptive */
     .metric-card {
-        background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+        background: var(--glass-bg);
         backdrop-filter: blur(10px);
         padding: 1.5rem;
         border-radius: 15px;
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid var(--glass-border);
         text-align: center;
         transition: all 0.3s ease;
-        color: white;
+        color: var(--text-color);
     }
     
-    .metric-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    /* Ensure all text is visible */
+    h1, h2, h3, h4, h5, h6, p, span, div {
+        color: var(--text-color) !important;
     }
     
-    /* Loading Animation */
-    .loading-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100px;
+    /* Override Streamlit's default colors */
+    .stMarkdown, .stText {
+        color: var(--text-color) !important;
     }
     
-    .loading-spinner {
-        width: 40px;
-        height: 40px;
-        border: 4px solid rgba(255,255,255,0.3);
-        border-top: 4px solid #667eea;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
+    /* Fix selectbox and other inputs */
+    .stSelectbox > div > div {
+        background-color: var(--glass-bg);
+        color: var(--text-color);
     }
     
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+    /* Fix expander headers */
+    .streamlit-expanderHeader {
+        background: var(--glass-bg);
+        border-radius: 15px;
+        border: 1px solid var(--glass-border);
+        color: var(--text-color);
+        font-weight: 600;
     }
 </style>
+""", unsafe_allow_html=True)
+
+# Add theme detection
+st.markdown("""
+<script>
+// Detect system theme and set data attribute
+function setTheme() {
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+}
+
+// Set theme on load
+setTheme();
+
+// Listen for theme changes
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setTheme);
+</script>
 """, unsafe_allow_html=True)
 
 # Header with glassmorphism effect
@@ -447,11 +436,12 @@ st.markdown("""
             </span>
         </span>
     </div>
-    <div style="text-align: center; color: white; font-size: 1.2rem; margin-top: -0.5rem;">
+    <div style="text-align: center; color: var(--text-color); font-size: 1.2rem; margin-top: -0.5rem;">
         AI-Powered Customer Emotion Detection & Smart Reply Generation
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 # Top Navigation Bar
@@ -492,7 +482,7 @@ if 'analytics_data' not in st.session_state:
 # Enhanced Sidebar with modern design
 st.sidebar.markdown("""
 <div style="text-align: center; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 15px; margin-bottom: 2rem;">
-    <h2 style="color: white; margin: 0;">🛠 Control Center</h2>
+    <h2 style="color: var(--text-color); margin: 0;">🛠 Control Center</h2>
     <p style="color: rgba(255,255,255,0.8); margin: 0.5rem 0 0 0;">Customize your experience</p>
 </div>
 """, unsafe_allow_html=True)
@@ -563,7 +553,7 @@ if st.sidebar.button("📲 Launch Telegram Bot", use_container_width=True):
         display: inline-block;
         padding: 10px 20px;
         background-color: #0088cc;
-        color: white;
+        color: var(--text-color);
         text-decoration: none;
         border-radius: 5px;
         margin-top: 10px;
@@ -576,7 +566,7 @@ if st.sidebar.button("📲 Launch Telegram Bot", use_container_width=True):
 st.markdown("""
 <div style="margin-top: 25px;">
 <div class="glass-card">
-    <h2 style="color: white; text-align: center; margin-bottom: 2rem;">
+    <h2 style="color: var(--text-color); text-align: center; margin-bottom: 2rem;">
         🎯 Customer Message Analysis Center
     </h2>
 </div>
@@ -588,7 +578,7 @@ col1, col2 = st.columns([3, 1])
 with col1:
     st.markdown("""
     <div class="glass-card">
-        <h3 style="color: white; margin-bottom: 1rem;">📩 Customer Message Input</h3>
+        <h3 style="color: var(--text-color); margin-bottom: 1rem;">📩 Customer Message Input</h3>
     </div>
     """, unsafe_allow_html=True)
     
@@ -604,7 +594,7 @@ with col1:
 with col2:
     st.markdown("""
     <div class="glass-card">
-        <h3 style="color: white; margin-bottom: 1rem;">🎭 Quick Test Messages</h3>
+        <h3 style="color: var(--text-color); margin-bottom: 1rem;">🎭 Quick Test Messages</h3>
     </div>
     """, unsafe_allow_html=True)
     
@@ -729,7 +719,7 @@ with col_btn2:
                 with result_col1:
                     st.markdown(f"""
                     <div class="glass-card">
-                        <h3 style="color: white; text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="color: var(--text-color); text-align: center; margin-bottom: 1.5rem;">
                             🧠 Emotion Analysis Results
                         </h3>
                         <div class="mood-display">
@@ -764,7 +754,7 @@ with col_btn2:
                 with result_col2:
                     st.markdown(f"""
                     <div class="glass-card">
-                        <h3 style="color: white; text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="color: var(--text-color); text-align: center; margin-bottom: 1.5rem;">
                             🤖 AI-Generated Smart Reply
                         </h3>
                         <div class="reply-box">
@@ -816,7 +806,7 @@ if show_analytics and st.session_state.analytics_data:
     st.markdown("---")
     st.markdown("""
     <div class="glass-card">
-        <h2 style="color: white; text-align: center; margin-bottom: 2rem;">
+        <h2 style="color: var(--text-color); text-align: center; margin-bottom: 2rem;">
             📊 Advanced Analytics Dashboard
         </h2>
     </div>
@@ -891,7 +881,7 @@ if show_analytics and st.session_state.analytics_data:
         with voice_col1:
             st.markdown(f"""
             <div class="glass-card">
-                <h4 style="color: white; margin-bottom: 1rem;">🤖 AI Insights</h4>
+                <h4 style="color: var(--text-color); margin-bottom: 1rem;">🤖 AI Insights</h4>
                 <p style="color: rgba(255,255,255,0.9); line-height: 1.6;">
                     {summary_text}
                 </p>
@@ -996,7 +986,7 @@ if show_analytics and st.session_state.analytics_data:
             with st.form("revenue_edit_form"):
                 st.markdown("""
                 <div class="glass-card">
-                    <h4 style="color: white; margin-bottom: 1rem;">💰 Adjust Revenue Estimates</h4>
+                    <h4 style="color: var(--text-color); margin-bottom: 1rem;">💰 Adjust Revenue Estimates</h4>
                     <p style="color: rgba(255,255,255,0.8); margin-bottom: 1rem;">
                         Fine-tune your revenue projections based on real-world insights
                     </p>
@@ -1050,7 +1040,7 @@ if show_history and st.session_state.chat_history:
     st.markdown("---")
     st.markdown("""
     <div class="glass-card">
-        <h2 style="color: white; text-align: center; margin-bottom: 2rem;">
+        <h2 style="color:var(--text-color); text-align: center; margin-bottom: 2rem;">
             💬 Conversation History & Insights
         </h2>
     </div>
@@ -1127,7 +1117,7 @@ if show_history and st.session_state.chat_history:
             with conv_col1:
                 st.markdown(f"""
                 <div class="chat-item">
-                    <h5 style="color: white; margin-bottom: 0.5rem;">📝 Customer Message</h5>
+                    <h5 style="color:var(--text-color); margin-bottom: 0.5rem;">📝 Customer Message</h5>
                     <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem;">{item['Message']}</p>
                     
                     <h5 style="color: white; margin-bottom: 0.5rem;">🤖 AI Response</h5>
@@ -1140,7 +1130,7 @@ if show_history and st.session_state.chat_history:
             with conv_col2:
                 st.markdown(f"""
                 <div class="stats-box">
-                    <h5 style="color: white; margin-bottom: 1rem;">📊 Analysis</h5>
+                    <h5 style="color: var(--text-color); margin-bottom: 1rem;">📊 Analysis</h5>
                     <p><strong>Mood:</strong> {item['Mood']}</p>
                     <p><strong>Category:</strong> {item['Mood Category']}</p>
                     <p><strong>Confidence:</strong> {item['Confidence']}%</p>
@@ -1154,7 +1144,7 @@ if show_history and st.session_state.chat_history:
 st.markdown("---")
 st.markdown("""
 <div class="glass-card">
-    <h2 style="color: white; text-align: center; margin-bottom: 2rem;">
+    <h2 style="color:var(--text-color); text-align: center; margin-bottom: 2rem;">
         🎯 Quick Actions Center
     </h2>
 </div>
@@ -1205,7 +1195,7 @@ st.markdown("---")
 st.markdown(f"""
 <div class="glass-card">
     <div style="text-align: center;">
-        <h3 style="color: white; margin-bottom: 1rem;">🧠 Smart Sales Agent Pro</h3>
+        <h3 style="color: var(--text-color); margin-bottom: 1rem;">🧠 Smart Sales Agent Pro</h3>
         <p style="color: rgba(255,255,255,0.8); margin-bottom: 1rem;">
             AI-Powered Customer Emotion Detection & Smart Reply Generation
         </p>
