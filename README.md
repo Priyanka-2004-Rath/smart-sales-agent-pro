@@ -144,5 +144,11 @@ AI-powered sales automation platform that streamlines lead handling and CRM thro
 
 # 🚀 Installation & Setup
 
+### Prerequisites
+- Python 3.8 or higher
+- pip package manager
 
+### Local Setup
+
+- **Clone the repository** 
 
