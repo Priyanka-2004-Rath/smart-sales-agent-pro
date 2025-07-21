@@ -6,7 +6,7 @@ A comprehensive AI-powered sales platform that combines intelligent mood detecti
 **Try it now:** [Smart Sales Agent Pro](https://smart-sales-agent-pro-nxe3voxwybyddrxyvmgmbe.streamlit.app/)
 
 # 🎯 Hackathon Challenge: Sales Automation
-- **Theme** Sales Automation - Agents that streamline lead handling and CRM
+- **Agenda** Sales Automation - Agents that streamline lead handling and CRM
 
 ### Problem Statement
 Modern sales teams struggle with:
@@ -133,6 +133,13 @@ AI-powered sales automation platform that streamlines lead handling and CRM thro
 <img width="319" height="693" alt="Screenshot 2025-07-21 001253" src="https://github.com/user-attachments/assets/980b2302-88ee-41e5-b397-628d325b37d0" />
 
 <img width="1047" height="497" alt="Screenshot 2025-07-21 001301" src="https://github.com/user-attachments/assets/29c9c418-ca5f-481c-ad2d-6f893ed106e3" />
+
+<img width="1009" height="136" alt="Screenshot 2025-07-21 085042" src="https://github.com/user-attachments/assets/8e3a28b8-e0c7-46c5-83c0-b36a0b517e67" />
+
+
+<img width="908" height="313" alt="Screenshot 2025-07-21 085001" src="https://github.com/user-attachments/assets/912b4cd1-a691-4439-8a24-48dfe4d0196a" />
+
+
 
 ### 🚀 What Makes Our Sales Automation Unique
 1. **Emotion-Aware Sales Agent**: First-of-its-kind mood detection for personalized interactions
